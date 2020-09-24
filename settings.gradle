@@ -1,2 +1,3 @@
+include ':lazycountanimation'
 include ':app'
-rootProject.name = "ProgressAnimation"
+rootProject.name = "Lazy Count Animation"
