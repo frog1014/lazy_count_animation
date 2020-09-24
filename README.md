@@ -5,8 +5,8 @@ It makes very easier progress TextView or any purposes.
 #### It supports not only positive but also negative numbers.
 
 ## Preview
-<a href="https://github.com/frog1014/lazy_count_animation/blob/feature/readme/art/countdown.gif?raw=true"><img src="https://github.com/frog1014/lazy_count_animation/blob/feature/readme/art/countdown.gif?raw=true" width="250px"/></a>
-<a href="https://github.com/frog1014/lazy_count_animation/blob/feature/readme/art/non_countdown.gif?raw=true"><img src="https://github.com/frog1014/lazy_count_animation/blob/feature/readme/art/non_countdown.gif?raw=true" width="250px"/></a>
+<a href="https://raw.githubusercontent.com/frog1014/lazy_count_animation/master/art/countdown.gif"><img src="https://raw.githubusercontent.com/frog1014/lazy_count_animation/master/art/countdown.gif" width="250px"/></a>
+<a href="https://github.com/frog1014/lazy_count_animation/blob/master/art/non_countdown.gif?raw=true"><img src="https://github.com/frog1014/lazy_count_animation/blob/master/art/non_countdown.gif?raw=true" width="250px"/></a>
 ## Usage
 Initate
 ```
