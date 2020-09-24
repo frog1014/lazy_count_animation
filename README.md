@@ -5,8 +5,8 @@ It makes very easier progress TextView or any purposes.
 #### It supports not only positive but also negative numbers.
 
 ## Preview
-<a href="https://github.com/IONsoft-Indonesia/RandomNumberAnimation/blob/master/art/RandomNumberGenerator.gif"><img src="https://github.com/IONsoft-Indonesia/RandomNumberAnimation/blob/master/art/RandomNumberGenerator.gif" width="250px"/></a>
-<a href="https://github.com/IONsoft-Indonesia/RandomNumberAnimation/blob/master/art/RandomNumberGenerator.gif"><img src="https://github.com/IONsoft-Indonesia/RandomNumberAnimation/blob/master/art/RandomNumberGenerator.gif" width="250px"/></a>
+<a href="https://github.com/frog1014/lazy_count_animation/blob/feature/readme/art/countdown.gif?raw=true"><img src="https://github.com/frog1014/lazy_count_animation/blob/feature/readme/art/countdown.gif?raw=true" width="250px"/></a>
+<a href="https://github.com/frog1014/lazy_count_animation/blob/feature/readme/art/non_countdown.gif?raw=true"><img src="https://github.com/frog1014/lazy_count_animation/blob/feature/readme/art/non_countdown.gif?raw=true" width="250px"/></a>
 ## Usage
 Initate
 ```
