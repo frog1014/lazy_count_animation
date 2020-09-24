@@ -1,4 +1,4 @@
-package com.github.frog1014.lazycountanimation.lib
+package com.github.frog1014.lazycountanimation
 
 import android.os.Handler
 import android.os.Looper

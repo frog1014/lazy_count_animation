@@ -1,4 +1,4 @@
-package com.github.frog1014.lazycountanimation
+package com.github.frog1014.lazycountanimationsample
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

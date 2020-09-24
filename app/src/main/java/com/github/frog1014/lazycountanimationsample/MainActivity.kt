@@ -1,11 +1,11 @@
-package com.github.frog1014.lazycountanimation
+package com.github.frog1014.lazycountanimationsample
 
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.github.frog1014.lazycountanimation.lib.LazyCountAnimation
+import com.github.frog1014.lazycountanimation.LazyCountAnimation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
