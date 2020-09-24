@@ -10,6 +10,26 @@ It makes very easier progress TextView or any purposes.
 ## Preview
 <a href="https://raw.githubusercontent.com/frog1014/lazy_count_animation/master/art/countdown.gif"><img src="https://raw.githubusercontent.com/frog1014/lazy_count_animation/master/art/countdown.gif" width="250px"/></a>
 <a href="https://github.com/frog1014/lazy_count_animation/blob/master/art/non_countdown.gif?raw=true"><img src="https://github.com/frog1014/lazy_count_animation/blob/master/art/non_countdown.gif?raw=true" width="250px"/></a>
+## Install
+#### Step 1. Add the JitPack repository to your build file
+
+Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+#### Step 2. Add the dependency
+```
+dependencies {
+        implementation 'com.github.frog1014:lazy_count_animation:1.0'
+	}
+```
+
+
 ## Usage
 Initate
 ```
