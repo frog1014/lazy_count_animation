@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         val handler = Handler()
         target.doOnTextChanged { text, _, _, _ ->
             handler.removeCallbacksAndMessages(null)
-            Handler().postDelayed({
+            handler.postDelayed({
                 Log.d(TAG, "onCreate: doOnTextChanged")
                 text?.toString()?.takeIf(String::isNotBlank)?.toInt()?.let {
                     progressAnimation?.setTargetProgress(it.toString().toLong())
