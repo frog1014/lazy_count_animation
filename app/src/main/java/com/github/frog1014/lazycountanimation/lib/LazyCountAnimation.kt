@@ -12,7 +12,7 @@ import kotlin.math.ceil
 class LazyCountAnimation private constructor() {
 
     companion object {
-        const val TAG = "ProgressAnimation"
+        const val TAG = "LazyCountAnimation"
     }
 
     private var progress = 0L
@@ -20,17 +20,17 @@ class LazyCountAnimation private constructor() {
     private var granularity = 3
     private var canCountdown = false
     private var timer: Timer? = null
-    private var doOnNextProgress: ((Long) -> Unit)? = null
-    private var endProgress = 100L
-    private var targetProgress = 0L
+    private var doOnNextNumber: ((Long) -> Unit)? = null
+    private var endNumber = 100L
+    private var targetNumber = 0L
     private var handler = Handler(Looper.getMainLooper())
-    fun doOnNextProgress(fn: ((Long) -> Unit)?) {
-        doOnNextProgress = fn
+    fun doOnNextNumber(fn: ((Long) -> Unit)?) {
+        doOnNextNumber = fn
     }
 
     @MainThread
-    private fun onNextProgress(progress: Long) {
-        doOnNextProgress?.invoke(progress)
+    private fun onNextNumber(number: Long) {
+        doOnNextNumber?.invoke(number)
     }
 
     fun isRunning() = timer != null
@@ -39,22 +39,22 @@ class LazyCountAnimation private constructor() {
 
         stop()
         timer = Timer().apply {
-            val signedDistance = targetProgress - progress
+            val signedDistance = targetNumber - progress
             val distance = if (canCountdown) abs(signedDistance) else signedDistance
             (ceil(distance / granularity.toDouble()).toLong()).takeIf { it > 0 }
                 ?.let {
                     var count = 0L
                     schedule(0L, interval) {
                         count++
-                        val isCountdown = canCountdown && targetProgress < progress
+                        val isCountdown = canCountdown && targetNumber < progress
                         if (isCountdown) progress -= granularity else progress += granularity
-                        if ((!isCountdown && progress > targetProgress)
-                            || (isCountdown && progress < targetProgress)
+                        if ((!isCountdown && progress > targetNumber)
+                            || (isCountdown && progress < targetNumber)
                         )
-                            progress = targetProgress
+                            progress = targetNumber
                         // if (progress > endProgress) progress = endProgress
                         postProgress(progress)
-                        if (count == it || /*progress >= endProgress ||*/ (!isCountdown && progress == targetProgress) || (isCountdown && progress == targetProgress)) {
+                        if (count == it || /*progress >= endProgress ||*/ (!isCountdown && progress == targetNumber) || (isCountdown && progress == targetNumber)) {
                             stop()
                             return@schedule
                         }
@@ -69,7 +69,7 @@ class LazyCountAnimation private constructor() {
     private fun postProgress(progress: Long) {
         Log.d(TAG, "postProgress() called with: progress = $progress")
         handler.post {
-            onNextProgress(progress)
+            onNextNumber(progress)
         }
     }
 
@@ -83,30 +83,30 @@ class LazyCountAnimation private constructor() {
         canCountdown = boolean
     }
 
-    fun setTargetProgress(progress: Long) {
+    fun setTargetNumber(number: Long) {
         if (isRunning()) stop()
-        targetProgress = progress
+        targetNumber = number
         // if (targetProgress > endProgress) {
         //     targetProgress = endProgress
         // }
         start()
     }
 
-    private fun setEndProgress(progress: Long) {
-        endProgress = progress
+    private fun setEndNumber(progress: Long) {
+        endNumber = progress
     }
 
-    private fun initTargetProgress(progress: Long) {
-        targetProgress = progress
+    private fun initTargetNumber(progress: Long) {
+        targetNumber = progress
     }
 
     // fun getEndProgress() = progress
 
-    fun setBeginProgress(number: Long) {
+    fun setBeginNumber(number: Long) {
         progress = number
     }
 
-    fun getProgress() = progress
+    fun getCurrentNumber() = progress
     fun stop() {
         Log.d(TAG, "stop: ")
         timer?.cancel()
@@ -118,13 +118,13 @@ class LazyCountAnimation private constructor() {
     }
 
     fun getFps() = (1000L / interval).toInt()
-    data class Builder(val beginProgress: Long, val targetProgress: Long) {
+    data class Builder(val beginNumber: Long, val targetNumber: Long) {
         private var fps = 30
         private var granularity = 3
         private var canCountdown = false
-        private var onNextProgress: ((Long) -> Unit)? = null
-        fun doOnNextProgress(fn: (Long) -> Unit) = apply {
-            onNextProgress = fn
+        private var onNextNumber: ((Long) -> Unit)? = null
+        fun doOnNextNumber(fn: (Long) -> Unit) = apply {
+            onNextNumber = fn
         }
 
         fun setGranularity(granularity: Int = this.granularity) = apply {
@@ -141,11 +141,11 @@ class LazyCountAnimation private constructor() {
 
         fun build(): LazyCountAnimation = LazyCountAnimation().apply {
             setGranularity(this@Builder.granularity)
-            initTargetProgress(this@Builder.targetProgress)
+            initTargetNumber(this@Builder.targetNumber)
             setFps(fps)
             setCanCountdown(this@Builder.canCountdown)
-            setBeginProgress(beginProgress)
-            doOnNextProgress(onNextProgress)
+            setBeginNumber(beginNumber)
+            doOnNextNumber(onNextNumber)
         }
     }
 

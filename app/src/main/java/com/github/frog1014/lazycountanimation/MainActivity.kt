@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             handler.postDelayed({
                 Log.d(TAG, "onCreate: doOnTextChanged")
                 text?.toString()?.takeIf(String::isNotBlank)?.toInt()?.let {
-                    progressAnimation?.setTargetProgress(it.toString().toLong())
+                    progressAnimation?.setTargetNumber(it.toString().toLong())
                 }
             }, 1000)
         }
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             .setCanCountdown(isCountdown.isChecked)
             .setGranularity(granularity.text.toString().takeIf(String::isNotBlank)?.toInt() ?: 3)
             .setFps(fps.text.toString().takeIf(String::isNotBlank)?.toInt() ?: 25)
-            .doOnNextProgress {
+            .doOnNextNumber {
                 progress.text = "$it"
             }
             .build()
