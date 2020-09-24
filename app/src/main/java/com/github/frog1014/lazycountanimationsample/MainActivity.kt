@@ -1,11 +1,11 @@
-package com.github.frog1014.lazycountanimation
+package com.github.frog1014.lazycountanimationsample
 
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import com.github.frog1014.lazycountanimation.lib.LazyCountAnimation
+import com.github.frog1014.lazycountanimation.LazyCountAnimation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             handler.postDelayed({
                 Log.d(TAG, "onCreate: doOnTextChanged")
                 text?.toString()?.takeIf(String::isNotBlank)?.toInt()?.let {
-                    progressAnimation?.setTargetProgress(it.toString().toLong())
+                    progressAnimation?.setTargetNumber(it.toString().toLong())
                 }
             }, 1000)
         }
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             .setCanCountdown(isCountdown.isChecked)
             .setGranularity(granularity.text.toString().takeIf(String::isNotBlank)?.toInt() ?: 3)
             .setFps(fps.text.toString().takeIf(String::isNotBlank)?.toInt() ?: 25)
-            .doOnNextProgress {
+            .doOnNextNumber {
                 progress.text = "$it"
             }
             .build()
