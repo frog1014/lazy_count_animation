@@ -1,4 +1,7 @@
 # Lazy Count Animation
+
+[![](https://jitpack.io/v/frog1014/lazy_count_animation.svg)](https://jitpack.io/#frog1014/lazy_count_animation)
+
 A convenient and continued number count animation. 
 It makes very easier progress TextView or any purposes.
 
