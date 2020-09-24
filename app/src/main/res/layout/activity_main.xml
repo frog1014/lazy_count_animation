@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Progress animation demo" />
+
+    <TextView
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="32sp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/startProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start progress (default:0)"
+        android:inputType="number"
+        android:textColorHint="@color/colorPrimary" />
+
+<!--    <androidx.appcompat.widget.AppCompatEditText-->
+<!--        android:id="@+id/endProgress"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="End progress (default:100)"-->
+<!--        android:inputType="number"-->
+<!--        android:textColorHint="@color/colorPrimary" />-->
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="FPS (default:30)"
+        android:inputType="number"
+        android:textColorHint="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reset" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Current progress"
+        android:inputType="number"
+        android:textColorHint="@color/colorPrimary" />
+
+</LinearLayout>
