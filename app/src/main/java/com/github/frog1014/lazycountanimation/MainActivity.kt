@@ -1,14 +1,19 @@
 package com.github.frog1014.lazycountanimation
 
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.github.frog1014.lazycountanimation.lib.LazyCountAnimation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val TAG = "MainActivity"
+    }
+
     private var progressAnimation: LazyCountAnimation? = null
-    private var debounceTs: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         buildProgressAnimation()
         submit.setOnClickListener {
             progressAnimation?.stop()
-            progress.text = "0"
+            progress.text = startProgress.text.toString().takeIf(String::isNotBlank) ?: "0"
+            target.setText("")
             buildProgressAnimation()
         }
 
@@ -29,13 +35,19 @@ class MainActivity : AppCompatActivity() {
             target.setText("")
         }
 
-        target.doOnTextChanged { text, start, before, count ->
-            if ((debounceTs + 1000) > System.currentTimeMillis()) {
+        random.setOnClickListener {
+            target.setText((1..1000).random().toString())
+        }
+
+        val handler = Handler()
+        target.doOnTextChanged { text, _, _, _ ->
+            handler.removeCallbacksAndMessages(null)
+            Handler().postDelayed({
+                Log.d(TAG, "onCreate: doOnTextChanged")
                 text?.toString()?.takeIf(String::isNotBlank)?.toInt()?.let {
                     progressAnimation?.setTargetProgress(it.toString().toLong())
                 }
-            }
-            debounceTs = System.currentTimeMillis()
+            }, 1000)
         }
     }
 
