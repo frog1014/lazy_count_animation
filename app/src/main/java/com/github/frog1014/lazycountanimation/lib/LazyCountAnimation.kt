@@ -48,23 +48,26 @@ class LazyCountAnimation private constructor() {
                         count++
                         val isCountdown = canCountdown && targetProgress < progress
                         if (isCountdown) progress -= granularity else progress += granularity
-                        if ((!canCountdown && progress > targetProgress) || (isCountdown && progress < targetProgress)) progress =
-                            targetProgress
+                        if ((!isCountdown && progress > targetProgress)
+                            || (isCountdown && progress < targetProgress)
+                        )
+                            progress = targetProgress
                         // if (progress > endProgress) progress = endProgress
-                        postProgress()
-                        if (count == it || /*progress >= endProgress ||*/ (!canCountdown && progress >= targetProgress) || (isCountdown && progress <= targetProgress)) {
+                        postProgress(progress)
+                        if (count == it || /*progress >= endProgress ||*/ (!isCountdown && progress == targetProgress) || (isCountdown && progress == targetProgress)) {
                             stop()
                             return@schedule
                         }
                     }
                 } ?: run {
                 stop()
-                postProgress()
+                postProgress(progress)
             }
         }
     }
 
-    private fun postProgress() {
+    private fun postProgress(progress: Long) {
+        Log.d(TAG, "postProgress() called with: progress = $progress")
         handler.post {
             onNextProgress(progress)
         }

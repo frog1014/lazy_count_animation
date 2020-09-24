@@ -37,12 +37,13 @@ class MainActivity : AppCompatActivity() {
             countdown.check(R.id.notCountdown)
             progress.text = "0"
             startProgress.setText("")
+            granularity.setText("")
             // endProgress.setText("")
             target.setText("")
         }
 
         random.setOnClickListener {
-            target.setText((1..1000).random().toString())
+            target.setText((1..3000).random().toString())
         }
 
         resume.setOnClickListener {
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             target.text.toString().takeIf(String::isNotBlank)?.toLong() ?: 100
         )
             .setCanCountdown(isCountdown.isChecked)
+            .setGranularity(granularity.text.toString().takeIf(String::isNotBlank)?.toInt() ?: 3)
             .setFps(fps.text.toString().takeIf(String::isNotBlank)?.toInt() ?: 25)
             .doOnNextProgress {
                 progress.text = "$it"
