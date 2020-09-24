@@ -3,20 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
+        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Progress animation demo" />
+        android:text="Current count" />
 
     <TextView
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
+        android:layout_marginBottom="32dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="32sp" />
 
@@ -28,13 +30,13 @@
         android:inputType="number"
         android:textColorHint="@color/colorPrimary" />
 
-<!--    <androidx.appcompat.widget.AppCompatEditText-->
-<!--        android:id="@+id/endProgress"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:hint="End progress (default:100)"-->
-<!--        android:inputType="number"-->
-<!--        android:textColorHint="@color/colorPrimary" />-->
+    <!--    <androidx.appcompat.widget.AppCompatEditText-->
+    <!--        android:id="@+id/endProgress"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:hint="End progress (default:100)"-->
+    <!--        android:inputType="number"-->
+    <!--        android:textColorHint="@color/colorPrimary" />-->
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fps"
@@ -43,6 +45,26 @@
         android:hint="FPS (default:30)"
         android:inputType="number"
         android:textColorHint="@color/colorPrimary" />
+
+    <RadioGroup
+        android:id="@+id/countdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/notCountdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Disable countdown" />
+
+        <RadioButton
+            android:id="@+id/isCountdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable countdown" />
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/submit"
@@ -55,6 +77,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="reset" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stop" />
+
+    <Button
+        android:id="@+id/resume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="resume" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/target"

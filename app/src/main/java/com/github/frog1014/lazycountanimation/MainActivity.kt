@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         const val TAG = "MainActivity"
     }
 
+    private val handler by lazy { Handler() }
     private var progressAnimation: LazyCountAnimation? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +27,14 @@ class MainActivity : AppCompatActivity() {
             buildProgressAnimation()
         }
 
+        stop.setOnClickListener {
+            progressAnimation?.stop()
+        }
+
         reset.setOnClickListener {
             progressAnimation?.stop()
             buildProgressAnimation()
+            countdown.check(R.id.notCountdown)
             progress.text = "0"
             startProgress.setText("")
             // endProgress.setText("")
@@ -39,7 +45,10 @@ class MainActivity : AppCompatActivity() {
             target.setText((1..1000).random().toString())
         }
 
-        val handler = Handler()
+        resume.setOnClickListener {
+            target.text = target.text
+        }
+
         target.doOnTextChanged { text, _, _, _ ->
             handler.removeCallbacksAndMessages(null)
             handler.postDelayed({
@@ -56,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             startProgress.text.toString().takeIf(String::isNotBlank)?.toLong() ?: 0,
             target.text.toString().takeIf(String::isNotBlank)?.toLong() ?: 100
         )
+            .setCanCountdown(isCountdown.isChecked)
             .setFps(fps.text.toString().takeIf(String::isNotBlank)?.toInt() ?: 25)
             .doOnNextProgress {
                 progress.text = "$it"
