@@ -48,11 +48,11 @@ class LazyCountAnimation private constructor() {
                         count++
                         val isCountdown = canCountdown && targetProgress < progress
                         if (isCountdown) progress -= granularity else progress += granularity
-                        if (progress > targetProgress || (isCountdown && progress < targetProgress)) progress =
+                        if ((!canCountdown && progress > targetProgress) || (isCountdown && progress < targetProgress)) progress =
                             targetProgress
                         // if (progress > endProgress) progress = endProgress
                         postProgress()
-                        if (count == it || /*progress >= endProgress ||*/ progress >= targetProgress) {
+                        if (count == it || /*progress >= endProgress ||*/ (!canCountdown && progress >= targetProgress) || (isCountdown && progress <= targetProgress)) {
                             stop()
                             return@schedule
                         }
